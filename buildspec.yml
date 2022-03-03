@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - REPOSITORY_URL=CODEBUILD_SOURCE_REPO_URL
+      - IMAGE_TAG=CODEBUILD_RESOLVED_SOURCE_VERSION
+  build:
+    commands:
+      - docker build -t $IMAGE_TAG .
+  post_build:
+    commands:
+      - echo Build completed
+      - docker push
+artifacts:
+  files:
+    - target/bootcamp.jar
