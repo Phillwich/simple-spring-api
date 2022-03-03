@@ -15,7 +15,8 @@ public class BooksController {
     }
 
     @GetMapping("/")
-    public void greeting() {}
+    public void greeting() {
+    }
 
     @GetMapping("/get/book/all")
     public List<Books> getBooks() {
