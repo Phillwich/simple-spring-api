@@ -1,6 +1,5 @@
 package com.Bootcamp;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.Bootcamp.book.Books;
@@ -10,15 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = ApplicationTests.class)
 class ApplicationTests {
 
-    @Autowired
-    BooksService booksService;
-
-	@Test
-	void contextLoads() {
-	}
+    // @Autowired
+    // BooksService booksService;
 
     @Test
     void trueTest() {
@@ -32,8 +27,9 @@ class ApplicationTests {
         books.author = "Philipp Hellwich";
         books.title = "The yourney of a consultant";
         books.yearWritten = "1996";
-        
-        Books parsedBook = this.booksService.parseYearOfBook(books);
+        BooksService booksService = new BooksService();
+
+        Books parsedBook = booksService.parseYearOfBook(books);
 
         assertEquals(parsedBook.yearWritten, "Jahr 1996");
     }

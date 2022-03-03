@@ -1,16 +1,19 @@
 package com.Bootcamp.book;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BooksService {
     
-    private final BooksRepository booksRepository;
+    @Autowired
+    private BooksRepository booksRepository;
 
-    public BooksService(BooksRepository booksRepository) {
-        this.booksRepository = booksRepository;
-    }
+    // public BooksService(BooksRepository booksRepository) {
+    //     this.booksRepository = booksRepository;
+    // }
 
     public List<Books> getBooks() {
         List<Books> allBooks = booksRepository.findAll();
