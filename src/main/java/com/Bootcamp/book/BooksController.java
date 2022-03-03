@@ -1,12 +1,6 @@
 package com.Bootcamp.book;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,17 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BooksController {
 
-    @PersistenceContext
-    private EntityManager em;
+    
+    private final BooksService booksService;
 
-    @Autowired
-    private BooksService booksService;
+    public BooksController(BooksService booksService) {
+        this.booksService = booksService;
+    }
 
     @GetMapping("/")
-    public List<Object> greeting() {
-        Query q = em.createNativeQuery("select * from books");
-        return q.getResultList();
-    }
+    public void greeting() {}
 
     @GetMapping("/get/book/all")
     public List<Books> getBooks() {
@@ -32,32 +24,14 @@ public class BooksController {
     }
     
     
-    @GetMapping("/get/book/name/{name}")
-    public Books getBookByName(@PathVariable("name") String name) {
+    @GetMapping("/get/book/{name}")
+    public Books getBookByName(@PathVariable String name) {
         return booksService.getBookByName(name);
     }
     
     
     @GetMapping("/get/book/year/{year}")
-    public Books getBookByYear(@PathVariable("year") String year) {
-        System.out.println("YEAR" + year);
-        return booksService.getBookByYear(Integer.parseInt(year));
+    public List<Books> getBookByYear(@PathVariable String year) {       
+        return booksService.getBookByYear(year);
     }
-
-
-
-
-    // @PersistenceContext
-    // private EntityManager em;
-
-
-    // @GetMapping("/get/book/all")
-    // public List<Object[]> getBooks() {
-
-      
-    //     Query q = em.createNativeQuery("select * from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='books'");
-    //     List<Object[]> results = q.getResultList();
-
-    //     return results;
-    // }
 }
