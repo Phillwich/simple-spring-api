@@ -18,15 +18,22 @@ public class BooksService {
     public List<Books> getBooks() {
         List<Books> allBooks = booksRepository.findAll();
         allBooks = allBooks.stream().map(books -> this.parseYearOfBook(books)).toList();
+
         return allBooks;
     }
 
     public Books getBookByName(String name) {
-        return booksRepository.findBookByTitle(name);
+        Books books = booksRepository.findBookByTitle(name);
+        books = this.parseYearOfBook(books);
+
+        return books;
     }
 
     public List<Books> getBookByYear(String year) {
-        return booksRepository.findAllByYearWritten(year);
+        List<Books> matchedBooks = booksRepository.findAllByYearWritten(year);
+        matchedBooks = matchedBooks.stream().map(books -> this.parseYearOfBook(books)).toList();
+
+        return matchedBooks;
     }
 
     public Books parseYearOfBook(Books books) {
