@@ -6,14 +6,10 @@ import com.Bootcamp.book.Books;
 import com.Bootcamp.book.BooksService;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes = ApplicationTests.class)
 class ApplicationTests {
-
-    // @Autowired
-    // BooksService booksService;
 
     @Test
     void trueTest() {
