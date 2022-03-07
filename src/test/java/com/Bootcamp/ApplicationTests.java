@@ -16,10 +16,7 @@ class ApplicationTests {
         assertEquals(true, true);
     }
 
-    @Test
-    void falseTest() {
-        assertEquals(false, false);
-    }
+    
 
     @Test
     void parseBookDate() {
