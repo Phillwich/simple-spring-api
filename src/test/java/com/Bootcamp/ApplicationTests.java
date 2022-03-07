@@ -17,6 +17,11 @@ class ApplicationTests {
     }
 
     @Test
+    void falseTest() {
+        assertEquals(false, false);
+    }
+
+    @Test
     void parseBookDate() {
         Books books = new Books();
         books.id = 100L;
