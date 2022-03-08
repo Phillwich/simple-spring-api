@@ -20,4 +20,4 @@ phases:
   post_build:
     commands:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      - aws --region $AWS_DEFAULT_REGION elasticbeanstalk update-environment --environment-name $BEANSTALK-ENV --version-label $BEANSTALK-VERSION
+      - aws --region $AWS_DEFAULT_REGION elasticbeanstalk update-environment --environment-name $BEANSTALK_ENV --version-label $BEANSTALK_VERSION
